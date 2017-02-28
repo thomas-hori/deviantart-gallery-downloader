@@ -1,19 +1,22 @@
 # Before use
 
-[Mechanize](http://mechanize.rubyforge.org) and netrc are needed:
+[Mechanize](http://wwwsearch.sourceforge.net/mechanize/) and [BeautifulSoup 4](https://www.crummy.com/software/BeautifulSoup/) are needed:
 
-`bundle` if u have Bundler installed.
+`sudo pip install mechanize bs4`
 
-or
+# Usage
 
-`sudo gem install mechanize netrc`
+`python deviantart_gallery_downloader.py [-i] [-n|-p|YOUR_USERNAME YOUR_PASSWORD] URL`
 
-# The downloader uses GALLERY'S PAGE
+The downloader uses URLs of gallery pages, e.g.
+http://azoexevan.deviantart.com/gallery/?catpath=/
 
-On the intital run, we need to add your login credential to your users ~/.netrc file, so we don't leave your username and password in the process ID, which could be seen by other users on the system (note: the initial run of this script will show up in your bash history).
+Passing passwords in the command line will show up in bash history and ps
+listings, and will of course echo.
 
-`ruby fetch.rb YOUR_USERNAME YOUR_PASSWORD http://azoexevan.deviantart.com/gallery/`
+Option|Explanation
+---|---
+-i|indefinite gallery mode (do not attempt to extract the gallery page count, simply read until there are no image links left). This is an extension not offered by the Ruby script.
+-n|take login credentials from netrc.
+-p|prompt for your login credentials. If possible, the password will not be echoed. This is an extension not offered by the Ruby script.
 
-An entry in ~/.netrc is created for you. You can then use '-n' and it will poll the netrc file for your login credentials.
-
-`ruby fetch.rb -n http://azoexevan.deviantart.com/gallery/`
